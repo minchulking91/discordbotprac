@@ -1,7 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const settings = require('./settings.json');
 var echo = require('./echo');
 
 var commandRegex = /^!.*/;
