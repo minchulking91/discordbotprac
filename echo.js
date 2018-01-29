@@ -13,6 +13,9 @@ module.exports = {
         return 'invalid command!';
     },
     getEchoString:function(content){
+        if(!echoEnable){
+            return "";
+        }
         console.log('on get echo string');
         var searchValue = null;
         echoMap.forEach(function search(value, key, map){
@@ -22,9 +25,16 @@ module.exports = {
         })
         console.log(searchValue);
         return searchValue;
+    },
+    setEnableEcho:function(enabled){
+        echoEnable = enabled;
+        if(enabled){
+            return '하잇!';
+        }
+        return '오케이 바이 ㅠㅠ';
     }
   };
-
+var echoEnable = true;
 var echoMap = new Map();
 
 function onEchoRegister(key, value){
