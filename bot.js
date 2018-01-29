@@ -1,5 +1,19 @@
+const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const settings = require('./settings.json');
+var echo = require('./echo');
+
+var commandRegex = /^!.*/;
+
+function onCommand(command){
+    var commandArray = command.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
+    if(commandArray[0] === '!echo'){
+        return echo.onEcho(commandArray);
+    }else{
+        return 'invalid command!';
+    }
+}
 
 client.on('ready', () => {
     console.log('i\'m ready');
@@ -11,9 +25,19 @@ client.on('message', message => {
     }
 });
 
-client.on('message', message => {
-    if(message.content === 'whoru'){
-        message.reply('i\'m 수면시간보장\'s bot!'); 
+client.on('message', function(message) {
+    // Don't forget to log the message!
+    if(!message.author.bot){
+        if(commandRegex.test(message.content)){
+            var result = onCommand(message.content);
+            message.channel.send(result);
+        }else{
+            var echoString = echo.getEchoString(message.content);
+            if(echoString != null){
+                message.channel.send(echoString);
+            }
+        }
+        // message.channel.send('hello!');    
     }
 });
 
