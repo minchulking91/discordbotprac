@@ -9,11 +9,14 @@ function onCommand(command){
     var commandArray = command.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
     if(commandArray[0] === '!echo'){
         return echo.onEcho(commandArray);
+    }else if(commandArray[0]==='!닥쳐' || commandArray[0] ==='!shutup'){
+        return echo.setEnableEcho(false);
+    }else if(commandArray[0] === '!그리터?'){
+        return echo.setEnableEcho(true);
     }else{
         return 'invalid command!';
     }
 }
-
 client.on('ready', () => {
     console.log('i\'m ready');
 });
