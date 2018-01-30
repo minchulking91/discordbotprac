@@ -44,4 +44,8 @@ client.on('message', function(message) {
 });
 
 
-client.login(process.env.BOT_TOKEN);
+// client.login(process.env.BOT_TOKEN);
+
+//for debug
+const settings = require('./settings.json');
+client.login(settings.token);
