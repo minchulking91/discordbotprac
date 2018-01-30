@@ -1,3 +1,5 @@
+var fileHelper = require('./filehelper');
+
 var startCommands = ['!echo'];
 var help = [
     {
@@ -22,6 +24,15 @@ var help = [
     }
 ];
 module.exports = {
+    setup: function () {
+        if (isSetup) {
+            return;
+        }
+        isSetup = true;
+        fileHelper.readEchoDictionary(function(newMap){
+            echoMap = newMap;
+        })
+    },
     getHelp: function () {
         return help
     },
@@ -32,21 +43,21 @@ module.exports = {
         return startCommand != null
     },
     execute: function (content) {
-        if(checkIsRegister(content)){
+        if (checkIsRegister(content)) {
             return register(content);
-        }else if(checkIsUnRegister(content)){
+        } else if (checkIsUnRegister(content)) {
             return unregister(content);
-        }else if(checkIsOn(content)){
+        } else if (checkIsOn(content)) {
             return setEnableEcho(true);
-        }else if(checkIsOff(content)){
+        } else if (checkIsOff(content)) {
             return setEnableEcho(false);
-        }else if(checkIsShow(content)){
+        } else if (checkIsShow(content)) {
             return printAllEcho();
         }
     },
-    readIfExist:function(content){
+    readIfExist: function (content) {
         console.log(`echo is ${echoEnable}`);
-        if(echoEnable){
+        if (echoEnable) {
             console.log('on get echo string');
             var searchValue = null;
             echoMap.forEach(function search(value, key, map) {
@@ -71,6 +82,7 @@ module.exports = {
         return 'invalid command!';
     },
 };
+var isSetup = false;
 var echoEnable = true;
 var echoMap = new Map();
 
@@ -78,52 +90,64 @@ function onEchoRegister(key, value) {
     echoMap.set(key, value);
     var message = `now greeter-bot read **__${key}__** and say **__${value}__**`
     console.log(message);
+    updateDirectory();
     return message;
+}
+function updateDirectory(){
+    fileHelper.writeEchoDictionary(echoMap, function (err) {
+        if (err != null) {
+            console.error(err);
+        } else {
+            console.log('write echo map');
+        }
+    })
 }
 function onEchoUnregister(key) {
     echoMap.delete(key);
     var message = `now greeter-bot forgot **__${key}__**`
     console.log(message);
+    updateDirectory();
     return message;
 }
+
 function printAllEcho() {
     return JSON.stringify([...echoMap]);
 }
 
-function checkIsRegister(content){
+function checkIsRegister(content) {
     return content.startsWith('!echo register ') || content.startsWith('!echo reg ');
 }
 
-function checkIsUnRegister(content){
+function checkIsUnRegister(content) {
     return content.startsWith('!echo unregister ') || content.startsWith('!echo unreg ');
 }
 
-function checkIsOff(content){
+function checkIsOff(content) {
     return content.startsWith('!echo shutup') || content.startsWith('!echo 닥쳐');
 }
 
-function checkIsOn(content){
+function checkIsOn(content) {
     return content.startsWith('!echo hello') || content.startsWith('!echo 그리터?');
 }
-function checkIsShow(content){
+function checkIsShow(content) {
     return content.startsWith('!echo show');
 }
-function register(content){
+function register(content) {
     console.log('catch register');
     var regex = /^!echo (register|reg) (\S+) (.+)\n?$/g;
     var result = regex.exec(content);
-    if(result != null){
+    if (result != null) {
         var key = result[2];
         var value = result[3];
         return onEchoRegister(key, value);
     }
 }
 
-function unregister(content){
+function unregister(content) {
     console.log('catch register');
     var regex = /^!echo (unregister|unreg) (\S+)\n?$/g;
     var result = regex.exec(content);
-    if(result != null){
+    if (result != null) {
         var key = result[2];
         return onEchoUnregister(key);
     }

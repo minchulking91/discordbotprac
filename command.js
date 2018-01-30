@@ -3,6 +3,9 @@ var echo = require('./echo');
 
 
 module.exports = {
+    init:function(){
+        echo.setup();
+    },
     checkAndExecute:function(message){
         var content = '';
         content = message.content;
