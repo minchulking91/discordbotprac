@@ -1,5 +1,5 @@
 var fs = require('fs');
-var echoFile = './echoDictionary.json'
+var echoFile = './tmp/echoDictionary.json'
 
 module.exports = {
     readEchoDictionary: function (callback) {
