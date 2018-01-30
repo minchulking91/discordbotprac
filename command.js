@@ -1,0 +1,44 @@
+var commandRegex = /^!.*/;
+var echo = require('./echo');
+
+
+module.exports = {
+    checkAndExecute:function(message){
+        var content = '';
+        content = message.content;
+        if(content.startsWith('!')){
+            var result = parsingCommand(content);
+            if(result != null){
+                return result;
+            }
+        }
+    },
+    executeIfEcho:function(content){
+        return echo.readIfExist(content);
+    }
+}
+
+function parsingCommand(content){
+    if(content.startsWith('!help')){
+        console.log('catch help');
+        var helpFields = echo.getHelp();
+        helpFields.forEach(function(element){
+            embedMessage['embed']['fields'].push(element);
+        })
+        return embedMessage;
+    }else if(echo.check(content)){
+        console.log('catch echo');
+        return echo.execute(content);
+    }
+}
+
+var embedMessage = {embed: {
+    color: 3447003,
+    author: {
+      name: 'greeter-bot',
+    },
+    title: "!help",
+    fields: [],
+    timestamp: new Date(),
+  }
+}
