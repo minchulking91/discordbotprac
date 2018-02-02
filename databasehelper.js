@@ -36,6 +36,7 @@ module.exports = {
         connection.query('SELECT * FROM echos', function(err, result, fields){
             console.log(`$result`);
         });
+        connection.end();
         return echoMap;
     }
 }
