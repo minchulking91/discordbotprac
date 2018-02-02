@@ -10,17 +10,19 @@ var connection = mysql.createConnection(process.env.JAWSDB_URL);
 // });
 
 // connection.end();
-var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) NOT NULL, sentence VARCHAR(40) NOT NULL, PRIMARY KEY ( token ));';
+var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) NOT NULL, sentence VARCHAR(40) NOT NULL, PRIMARY KEY ( token ))';
 
 module.exports = {
     addEcho: function (key, value) {
         
         connection.connect();
-        connection.query(createEchoTableQuery);
+        connection.query(createEchoTableQuery, function (err, result){
 
-        connection.query(`INSERT INTO echos $key, $value`, function (err, rows, fields) {
+        });
+
+        connection.query(`INSERT INTO echos $key, $value`, function (err, result) {
             if (err) console.error(err);
-            console.log('The solution is: ', rows[0].solution);
+            console.log(`insert $key $value`);
         });
 
         connection.end();
@@ -28,11 +30,11 @@ module.exports = {
     selectEchos:function(){
         var echoMap = new Map();
         connection.connect();
-        connection.query(createEchoTableQuery);
-        connection.query('SELECT * FROM echos', function(err, rows, fields){
-            rows.forEach(element => {
-                echoMap.set(element[0], element[1]);
-            });
+        connection.query(createEchoTableQuery, function (err, result){
+
+        });
+        connection.query('SELECT * FROM echos', function(err, result, fields){
+            console.log(`$result`);
         });
         return echoMap;
     }
