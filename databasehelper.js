@@ -39,10 +39,12 @@ module.exports = {
 
         });
         connection.query('SELECT * FROM echos', function(err, result, fields){
-            result.forEach(element => {
-                console.log(element);
-                echoMap.set(result.token, result.sentence);
-            });
+            Object.keys(result).forEach(function(key) {
+                var row = result[key];
+                var sentence = row.sentence;
+                console.log(row.sentence);
+                echoMap.set(key, sentence);
+              });
         });
 
         return echoMap;
