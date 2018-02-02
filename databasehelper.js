@@ -20,12 +20,17 @@ module.exports = {
 
         });
 
-        connection.query(`INSERT INTO echos (token, sentence) VALUES ('${key}', '${value}')`, function (err, result) {
+        connection.query(`INSERT INTO echos (token, sentence) ON DUPLICATE KEY UPDATE VALUES ('${key}', '${value}')`, function (err, result) {
             if (err) console.error(err);
             console.log(`insert ${key} ${value}`);
         });
 
         // connection.end();
+    },
+    deleteEcho:function(key){
+        connection.query("DELETE FROM customers WHERE token = '${key}'", function (err, result){
+
+        });
     },
     selectEchos:function(){
         var echoMap = new Map();
