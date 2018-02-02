@@ -42,7 +42,7 @@ module.exports = {
             Object.keys(result).forEach(function(key) {
                 var row = result[key];
                 var sentence = row.sentence;
-                console.log(row.sentence);
+                console.log(`${key} ${row.sentence}`);
                 echoMap.set(key, sentence);
               });
         });

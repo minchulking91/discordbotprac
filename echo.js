@@ -30,7 +30,9 @@ module.exports = {
             return;
         }
         isSetup = true;
-        echoMap = databaseHelper.selectEchos();
+        databaseHelper.selectEchos(function(newEchoMap){
+            echoMap = newEchoMap;
+        });
     },
     getHelp: function () {
         return help;
