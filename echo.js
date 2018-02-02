@@ -32,6 +32,7 @@ module.exports = {
         isSetup = true;
         databaseHelper.selectEchos(function(newEchoMap){
             echoMap = newEchoMap;
+            console.log(`load echo map ${echoMap}`);
         });
     },
     getHelp: function () {

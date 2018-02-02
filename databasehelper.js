@@ -14,9 +14,9 @@ var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) N
 
 module.exports = {
     addEcho: function (key, value) {
-        
+
         // connection.connect();
-        connection.query(createEchoTableQuery, function (err, result){
+        connection.query(createEchoTableQuery, function (err, result) {
 
         });
 
@@ -27,27 +27,31 @@ module.exports = {
 
         // connection.end();
     },
-    deleteEcho:function(key){
-        connection.query("DELETE FROM customers WHERE token = '${key}'", function (err, result){
+    deleteEcho: function (key) {
+        connection.query("DELETE FROM customers WHERE token = '${key}'", function (err, result) {
 
         });
     },
-    selectEchos:function(){
-        var echoMap = new Map();
+    selectEchos: function (callback) {
+
         connection.connect();
-        connection.query(createEchoTableQuery, function (err, result){
+        connection.query(createEchoTableQuery, function (err, result) {
 
         });
-        connection.query('SELECT * FROM echos', function(err, result, fields){
-            Object.keys(result).forEach(function(key) {
+        connection.query('SELECT * FROM echos', function (err, result, fields) {
+            var echoMap = new Map();
+            Object.keys(result).forEach(function (key) {
                 var row = result[key];
                 var sentence = row.sentence;
-                console.log(`${key} ${row.sentence}`);
-                echoMap.set(key, sentence);
-              });
+                var token = row.token;
+                console.log(`${token} ${sentence}`);
+                echoMap.set(token, sentence);
+            });
+            if(typeof callback === 'function') {
+                callback(echoMap);
+            }
         });
 
-        return echoMap;
     }
 }
 
