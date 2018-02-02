@@ -35,6 +35,9 @@ module.exports = {
         });
         connection.query('SELECT * FROM echos', function(err, result, fields){
             console.log(result);
+            result.forEach(element => {
+                echoMap.set(result.token, result.sentence);
+            });
         });
 
         return echoMap;
