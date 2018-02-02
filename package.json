@@ -10,7 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.3.0",
-    "opusscript": "0.0.6"
+    "opusscript": "0.0.6",
+    "express": "4.14.0",
+    "mysql": "2.11.1"
   },
   "optionalDependencies": {
     "bufferutil": "^3.0.3"
