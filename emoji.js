@@ -2,7 +2,7 @@ module.exports = {
     check: function (content) {
         return content.startsWith('!emoji');
     },
-    execute: function (contet) {
+    execute: function (content) {
         var regex = /^!emoji (.*)\n?$/g;
         var result = regex.exec(content);
         if(result != null){
