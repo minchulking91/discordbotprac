@@ -1,6 +1,6 @@
 var commandRegex = /^!.*/;
 var echo = require('./echo');
-
+var emoji = require('./emoji');
 
 module.exports = {
     init:function(){
@@ -42,6 +42,9 @@ function parsingCommand(content){
     }else if(echo.check(content)){
         console.log('catch echo');
         return echo.execute(content);
+    }else if(emoji.check(content)){
+        console.log('catch emoji');
+        return emoji.execute(content);
     }
 }
 
