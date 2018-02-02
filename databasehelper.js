@@ -29,7 +29,7 @@ module.exports = {
         var echoMap = new Map();
         connection.connect();
         connection.query('SELECT * FROM echos', function(err, rows, fields){
-            rows.array.forEach(element => {
+            rows.forEach(element => {
                 echoMap.set(element[0], element[1]);
             });
         });
