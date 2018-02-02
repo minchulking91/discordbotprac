@@ -15,17 +15,17 @@ var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) N
 module.exports = {
     addEcho: function (key, value) {
         
-        connection.connect();
+        // connection.connect();
         connection.query(createEchoTableQuery, function (err, result){
 
         });
 
-        connection.query(`INSERT INTO echos $key, $value`, function (err, result) {
+        connection.query(`INSERT INTO echos ${key}, ${value}`, function (err, result) {
             if (err) console.error(err);
-            console.log(`insert $key $value`);
+            console.log(`insert ${key} ${value}`);
         });
 
-        connection.end();
+        // connection.end();
     },
     selectEchos:function(){
         var echoMap = new Map();
@@ -34,9 +34,9 @@ module.exports = {
 
         });
         connection.query('SELECT * FROM echos', function(err, result, fields){
-            console.log(`$result`);
+            console.log(result);
         });
-        connection.end();
+
         return echoMap;
     }
 }
