@@ -28,6 +28,7 @@ module.exports = {
     selectEchos:function(){
         var echoMap = new Map();
         connection.connect();
+        connection.query(createEchoTableQuery);
         connection.query('SELECT * FROM echos', function(err, rows, fields){
             rows.forEach(element => {
                 echoMap.set(element[0], element[1]);
