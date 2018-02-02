@@ -1,4 +1,5 @@
-var fileHelper = require('./filehelper');
+// var fileHelper = require('./filehelper');
+var databaseHelper = require('./databasehelper');
 
 var startCommands = ['!echo'];
 var help = [
@@ -29,12 +30,10 @@ module.exports = {
             return;
         }
         isSetup = true;
-        fileHelper.readEchoDictionary(function(newMap){
-            echoMap = newMap;
-        })
+        echoMap = databaseHelper.selectEchos();
     },
     getHelp: function () {
-        return help
+        return help;
     },
     check: function (content) {
         var startCommand = startCommands.find(function (element) {
@@ -90,23 +89,17 @@ function onEchoRegister(key, value) {
     echoMap.set(key, value);
     var message = `now greeter-bot read **__${key}__** and say **__${value}__**`
     console.log(message);
-    updateDirectory();
+    updateDirectory(key, value);
     return message;
 }
-function updateDirectory(){
-    fileHelper.writeEchoDictionary(echoMap, function (err) {
-        if (err != null) {
-            console.error(err);
-        } else {
-            console.log('write echo map');
-        }
-    })
+function updateDirectory(key, value){
+    databaseHelper.addEcho(key, value);
 }
 function onEchoUnregister(key) {
     echoMap.delete(key);
     var message = `now greeter-bot forgot **__${key}__**`
     console.log(message);
-    updateDirectory();
+    // updateDirectory();
     return message;
 }
 
