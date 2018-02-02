@@ -1,6 +1,6 @@
 var fs = require('fs');
-var echoFile = './tmp/echoDictionary.json'
-
+// var echoFile = './tmp/echoDictionary.json'
+var echoFile = '/tmp/echoDictionary.json'
 module.exports = {
     readEchoDictionary: function (callback) {
         fs.readFile(echoFile, 'utf-8',function(error, data){

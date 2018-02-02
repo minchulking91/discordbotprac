@@ -23,6 +23,16 @@ module.exports = {
 
 function parsingCommand(content){
     if(content.startsWith('!help')){
+        var embedMessage = {embed: {
+            color: 3447003,
+            author: {
+              name: 'greeter-bot',
+            },
+            title: "!help",
+            fields: [],
+            timestamp: new Date(),
+          }
+        }
         console.log('catch help');
         var helpFields = echo.getHelp();
         helpFields.forEach(function(element){
@@ -35,13 +45,3 @@ function parsingCommand(content){
     }
 }
 
-var embedMessage = {embed: {
-    color: 3447003,
-    author: {
-      name: 'greeter-bot',
-    },
-    title: "!help",
-    fields: [],
-    timestamp: new Date(),
-  }
-}
