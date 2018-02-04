@@ -1,4 +1,4 @@
-const PingAction = require('./PingAction.js');
+module.exports = GreeterAction;
 
 class GreeterAction{
 
@@ -18,7 +18,6 @@ class GreeterAction{
         }
     }
 };
-module.exports = GreeterAction;
 
 class PingAction extends GreeterAction{
 
