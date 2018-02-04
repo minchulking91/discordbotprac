@@ -15,6 +15,7 @@ var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) N
 
 module.exports = {
     addEcho: function (key, value) {
+        
         pool.getConnection(function(err, connection){
             connection.query(createEchoTableQuery, function (err, result) {
 
@@ -36,6 +37,9 @@ module.exports = {
         });
     },
     selectEchos: function (callback) {
+        pool.getConnection(function(erro, connection){
+            connection.query('drop table echos');
+        });
         pool.getConnection(function(err, connection){
             connection.query(createEchoTableQuery, function (err, result) {
 
