@@ -11,7 +11,7 @@ var pool = mysql.createPool(process.env.JAWSDB_URL);
 // });
 
 // connection.end();
-var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) NOT NULL, sentence VARCHAR(40) NOT NULL, PRIMARY KEY ( token ))';
+var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) NOT NULL, sentence VARCHAR(200) NOT NULL, PRIMARY KEY ( token ))';
 
 module.exports = {
     addEcho: function (key, value) {
