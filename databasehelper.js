@@ -29,7 +29,7 @@ module.exports = {
     },
     deleteEcho: function (key) {
         pool.getConnection(function(err, connection){
-            connection.query("DELETE FROM customers WHERE token = '${key}'", function (err, result) {
+            connection.query(`DELETE FROM customers WHERE token = '${key}'`, function (err, result) {
 
             });
             connection.release();
