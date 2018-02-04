@@ -20,7 +20,7 @@ module.exports = {
 
             });
     
-            connection.query(`INSERT INTO echos (token, sentence) ON DUPLICATE KEY UPDATE VALUES ('${key}', '${value}')`, function (err, result) {
+            connection.query(`INSERT INTO echos (token, sentence) VALUES ('${key}', '${value}') ON DUPLICATE KEY UPDATE token='${key}', sentence='${value}'`, function (err, result) {
                 if (err) console.error(err);
                 console.log(`insert ${key} ${value}`);
             });
