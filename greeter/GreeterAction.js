@@ -15,5 +15,6 @@ class GreeterAction{
             return new PingAction(message);
         }
     }
-}
+};
 
+module.exports = GreeterAction;
