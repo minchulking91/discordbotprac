@@ -1,4 +1,4 @@
-module.exports = GreeterAction;
+
 
 class GreeterAction{
 
@@ -25,3 +25,5 @@ class PingAction extends GreeterAction{
         this._message.channel.send('pong');
     }
 };
+
+module.exports = GreeterAction;
