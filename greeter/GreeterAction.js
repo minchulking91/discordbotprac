@@ -1,5 +1,3 @@
-
-
 module.exports = class GreeterAction {
     constructor(message) {
       this._message = message;

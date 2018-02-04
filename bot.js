@@ -2,9 +2,11 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const path = process.cwd();
+
 const command = require('./command');
 const databaseHelper = require('./databasehelper');
-const GreeterFactory = require('.greeter/GreeterFactory.js');
+const GreeterFactory = require(`${path}/greeter/GreeterFactory`);
 
 client.on('ready', () => {
     console.log('i\'m ready');
