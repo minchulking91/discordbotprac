@@ -7,7 +7,7 @@ var command = require('./command');
 
 client.on('ready', () => {
     console.log('i\'m ready');
-    // command.init();
+    command.init();
 });
 
 client.on('message', function(message) {
