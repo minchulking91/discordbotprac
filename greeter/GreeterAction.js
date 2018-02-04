@@ -7,10 +7,11 @@ class GreeterAction{
     run(){
         throw new Error("must implement method!");
     }
-}
 
-function createAction(message){
-    if(!message.author.bot && message.content === 'ping'){
-        return new PingAction(message);
+    static createAction(message){
+        if(!message.author.bot && message.content === 'ping'){
+            return new PingAction(message);
+        }
     }
 }
+
