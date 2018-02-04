@@ -2,16 +2,14 @@ var mysql = require('mysql');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 const createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) NOT NULL, sentence VARCHAR(40) NOT NULL, PRIMARY KEY ( token ))';
-const insertEchoQuery = `INSERT INTO echos (token, sentence) ON DUPLICATE KEY UPDATE VALUES ('${key}', '${value}')`;
-const deleteEchoQuery = `DELETE FROM customers WHERE token = '${key}'`;
-const selectEchosQuery = 'SELECT * FROM echos';
 
 module.exports = {
     makeConnection:function(){
         connection.connect();
     },
     addEcho: function (key, value) {
-
+        const insertEchoQuery = `INSERT INTO echos (token, sentence) ON DUPLICATE KEY UPDATE VALUES ('${key}', '${value}')`;
+        
         // connection.connect();
         connection.query(createEchoTableQuery, function (err, result) {
 
@@ -24,11 +22,13 @@ module.exports = {
 
     },
     deleteEcho: function (key) {
+        const deleteEchoQuery = `DELETE FROM customers WHERE token = '${key}'`;
         connection.query(deleteEchoQuery, function (err, result) {
 
         });
     },
     selectEchos: function (callback) {
+        const selectEchosQuery = 'SELECT * FROM echos';
         connection.query(createEchoTableQuery, function (err, result) {
 
         });
@@ -48,6 +48,6 @@ module.exports = {
 
     }
 
-    
+
 }
 

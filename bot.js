@@ -16,10 +16,13 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    
-    if(!message.author.bot){
-        var result = command.checkAndExecute(message);
+    var action = GreeterFactory.createAction(message);
+    if(action != null){
+        action.run();
     }
+    // if(!message.author.bot){
+    //     var result = command.checkAndExecute(message);
+    // }
 });
 
 client.login(process.env.BOT_TOKEN);

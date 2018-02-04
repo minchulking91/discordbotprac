@@ -12,18 +12,19 @@ const echoShowRegex = /^!echo show\n?$/g;
 const echoRegex = /^!echo (register|reg|unregister|unreg|shutup|닥쳐|off|hello|그리터?|on|help|show) .*\n?$/g;
 
 var echoMap = new Map();
+var echoEnable = true;
 
 module.exports = class EchoAction extends GreeterAction {
     constructor(message) {
         this._message = message;
     }
 
-    static init(){
+    static init() {
         if (isSetup) {
             return;
         }
         isSetup = true;
-        databaseHelper.selectEchos(function(newEchoMap){
+        databaseHelper.selectEchos(function (newEchoMap) {
             echoMap = newEchoMap;
             console.log(`load echo map ${echoMap}`);
         });
@@ -68,7 +69,24 @@ module.exports = class EchoAction extends GreeterAction {
     }
 }
 
-function executeShow(){
+function executeEcho(){
+
+}
+
+function executeHelp() {
+
+}
+function executeOff() {
+    echoEnable = false;
+    return '오케이 바이 ㅠㅠ';
+}
+function executeOn() {
+    echoEnable = true;
+    return '하잇!';
+
+}
+
+function executeShow() {
     return JSON.stringify([...echoMap]);
 }
 
