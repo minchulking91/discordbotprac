@@ -2,29 +2,35 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const path = process.cwd();
-const command = require('./command');
-const databaseHelper = require('./databasehelper');
-const GreeterFactory = require(`${path}/greeter/GreeterFactory`);
-const EchoAction = require(`${path}/greeter/echo/EchoAction`);
+var command = require('./command');
 
 client.on('ready', () => {
     console.log('i\'m ready');
-    databaseHelper.makeConnection();
-    EchoAction.init();
-
     command.init();
 });
 
 client.on('message', message => {
-    var action = createAction(message);
-    if(action != null){
-        action.run();
+    if(message.content === 'ping'){
+        message.reply('pong'); 
     }
-    // if(!message.author.bot){
-    //     var result = command.checkAndExecute(message);
-    // }
 });
+
+client.on('message', function(message) {
+    // Don't forget to log the message!
+    if(!message.author.bot){
+        var result = command.checkAndExecute(message);
+        if(result != null){
+            message.channel.send(result);
+        }else{
+            var echoResult = command.executeIfEcho(message.content);
+            if(echoResult != null){
+                message.channel.send(echoResult);
+            }
+        }
+        // message.channel.send('hello!');    
+    }
+});
+
 
 client.login(process.env.BOT_TOKEN);
 

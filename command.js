@@ -1,6 +1,6 @@
-const commandRegex = /^!.*/;
-const echo = require('./echo');
-const emoji = require('./emoji');
+var commandRegex = /^!.*/;
+var echo = require('./echo');
+var emoji = require('./emoji');
 
 module.exports = {
     init:function(){
@@ -11,19 +11,14 @@ module.exports = {
         content = message.content;
         if(content.startsWith('!')){
             var result = parsingCommand(content);
-            message.channel.send(result);
-        }else{
-            var echoResult = executeIfEcho(message.content);
-            if(echoResult != null){
-                message.channel.send(echoresult);
+            if(result != null){
+                return result;
             }
         }
+    },
+    executeIfEcho:function(content){
+        return echo.readIfExist(content);
     }
-    
-}
-
-function executeIfEcho(content){
-    return echo.readIfExist(content);
 }
 
 function parsingCommand(content){
