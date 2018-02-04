@@ -15,7 +15,7 @@ var createEchoTableQuery = 'CREATE TABLE IF NOT EXISTS echos(token VARCHAR(40) N
 module.exports = {
     addEcho: function (key, value) {
 
-        // connection.connect();
+        connection.connect();
         connection.query(createEchoTableQuery, function (err, result) {
 
         });
@@ -25,12 +25,14 @@ module.exports = {
             console.log(`insert ${key} ${value}`);
         });
 
-        // connection.end();
+        connection.destroy();
     },
     deleteEcho: function (key) {
+        connection.connect();
         connection.query("DELETE FROM customers WHERE token = '${key}'", function (err, result) {
 
         });
+        connection.destroy();
     },
     selectEchos: function (callback) {
 
@@ -51,7 +53,7 @@ module.exports = {
                 callback(echoMap);
             }
         });
-
+        connection.destroy();
     }
 }
 
