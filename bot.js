@@ -3,10 +3,10 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const path = process.cwd();
-
 const command = require('./command');
 const databaseHelper = require('./databasehelper');
 const GreeterFactory = require(`${path}/greeter/GreeterFactory`);
+const EchoAction = require(`${path}/greeter/echo/EchoAction`);
 
 client.on('ready', () => {
     console.log('i\'m ready');
