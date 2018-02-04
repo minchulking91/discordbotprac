@@ -1,4 +1,4 @@
-const PingAction = require('./PingAction');
+const PingAction = require('./PingAction').default;
 
 export default class GreeterAction{
 
