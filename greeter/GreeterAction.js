@@ -10,6 +10,7 @@ class GreeterAction{
 
     static createAction(message){
         if(!message.author.bot && message.content === 'ping'){
+            console.log('create action ping');
             return new PingAction(message);
         }
     }
