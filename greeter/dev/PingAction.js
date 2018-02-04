@@ -1,3 +1,4 @@
+const path = process.cwd();
 const GreeterFactory = require(`${path}/greeter/GreeterAction`);
 
 module.exports = class EchoAction extends GreeterAction {
