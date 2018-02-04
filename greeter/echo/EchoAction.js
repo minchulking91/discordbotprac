@@ -1,4 +1,3 @@
-import { Message } from 'discord.js';
 const databaseHelper = require('./databasehelper');
 const GreeterAction = require('./GreeterAction');
 
