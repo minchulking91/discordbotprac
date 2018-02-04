@@ -4,7 +4,6 @@ const client = new Discord.Client();
 
 const command = require('./command');
 const databaseHelper = require('./databasehelper');
-const EchoAction = require('./greeter/echo/EchoAction');
 const GreeterFactory = require('.greeter/GreeterFactory');
 
 client.on('ready', () => {

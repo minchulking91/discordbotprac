@@ -1,5 +1,6 @@
-const databaseHelper = require('./databasehelper');
-const GreeterAction = require('./GreeterAction');
+const path = process.cwd();
+const databaseHelper = require(`${path}/databasehelper`);
+const GreeterAction = require(`${path}/greeter/GreeterAction`);
 
 const echoRegRegex = /^!echo (register|reg) (\S+) (.+)\n?$/g;
 const echoUnregRegex = /^!echo (unregister|unreg) (\S+)\n?$/g;
