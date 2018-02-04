@@ -1,4 +1,4 @@
-class GreeterAction{
+export default class GreeterAction{
 
     constructor(message){
         this._message = message;
@@ -16,5 +16,3 @@ class GreeterAction{
         }
     }
 };
-
-module.exports = GreeterAction;
