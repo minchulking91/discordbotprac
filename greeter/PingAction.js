@@ -1,4 +1,4 @@
-export default class PingAction extends GreeterAction{
+class PingAction extends GreeterAction{
     constructor(message){
         super(mesasge);
     }
@@ -7,3 +7,4 @@ export default class PingAction extends GreeterAction{
         this._message.channel.send('pong');
     }
 };
+module.exports = PingAction;

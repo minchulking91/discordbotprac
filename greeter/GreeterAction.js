@@ -1,6 +1,6 @@
-const PingAction = require('./PingAction').default;
+const PingAction = require('./PingAction.js');
 
-export default class GreeterAction{
+class GreeterAction{
 
     constructor(message){
         this._message = message;
@@ -18,3 +18,4 @@ export default class GreeterAction{
         }
     }
 };
+module.exports = GreeterAction;
