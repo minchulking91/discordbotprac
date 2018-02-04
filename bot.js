@@ -17,7 +17,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    var action = GreeterFactory.createAction(message);
+    var action = createAction(message);
     if(action != null){
         action.run();
     }
