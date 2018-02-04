@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const greeter = require('./greeter/GreeterAction');
+const GreeterAction = require('./greeter/GreeterAction');
 
 var command = require('./command');
 
