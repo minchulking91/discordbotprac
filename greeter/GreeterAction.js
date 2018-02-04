@@ -1,3 +1,5 @@
+const PingAction = require('./PingAction');
+
 export default class GreeterAction{
 
     constructor(message){
