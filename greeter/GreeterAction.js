@@ -19,3 +19,10 @@ class GreeterAction{
     }
 };
 module.exports = GreeterAction;
+
+class PingAction extends GreeterAction{
+
+    run(){
+        this._message.channel.send('pong');
+    }
+};
