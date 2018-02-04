@@ -1,4 +1,4 @@
-const GreeterAction = require('./GreeterAction.js');
+import GreeterAction from './GreeterAction.js';
 
 class PingAction extends GreeterAction{
 
