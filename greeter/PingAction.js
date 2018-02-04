@@ -1,4 +1,4 @@
-const PingAction = require('./GreeterAction.js');
+const GreeterAction = require('./GreeterAction.js');
 
 class PingAction extends GreeterAction{
     constructor(message){
