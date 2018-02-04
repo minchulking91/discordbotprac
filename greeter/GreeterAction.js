@@ -1,7 +1,4 @@
-
-
 class GreeterAction{
-
     constructor(message){
         this._message = message;
     }
@@ -20,7 +17,13 @@ class GreeterAction{
 };
 
 class PingAction extends GreeterAction{
+    run(){
+        this._message.channel.send('pong');
+    }
+};
 
+class EchoAction extends GreeterAction{
+    
     run(){
         this._message.channel.send('pong');
     }
