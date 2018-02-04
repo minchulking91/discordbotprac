@@ -1,3 +1,5 @@
+const GreeterFactory = require(`${path}/greeter/GreeterAction`);
+
 module.exports = class EchoAction extends GreeterAction {
     constructor(message) {
         this._message = message;
