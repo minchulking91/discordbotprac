@@ -1,3 +1,5 @@
+const PingAction = require('./GreeterAction.js');
+
 class PingAction extends GreeterAction{
     constructor(message){
         super(mesasge);
