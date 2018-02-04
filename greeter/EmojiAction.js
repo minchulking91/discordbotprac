@@ -1,5 +1,5 @@
 const path = process.cwd();
-const GreeterFactory = require(`${path}/greeter/GreeterAction`);
+const GreeterAction = require(`${path}/greeter/GreeterAction`);
 
 module.exports = class EmojiAction extends GreeterAction {
     static newInstance() {
