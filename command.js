@@ -8,7 +8,7 @@ module.exports = {
     },
     checkAndExecute:function(message){
         var content = '';
-        content = message.content;
+        content = message.cleanContent;
         if(content.startsWith('!')){
             var result = parsingCommand(content);
             if(result != null){
