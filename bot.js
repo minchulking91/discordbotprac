@@ -18,6 +18,7 @@ client.on('message', function(message) {
     // Don't forget to log the message!
     if(!message.author.bot){
         var result = command.checkAndExecute(message);
+        console.log(`${result}`)
         if(result != null){
             message.channel.send(result);
         }else{
